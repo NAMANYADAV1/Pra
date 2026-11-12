@@ -1,0 +1,35 @@
+@StudentManagement.Api_HostAddress = http://localhost:5050
+
+### Register and receive an access token
+POST {{StudentManagement.Api_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "student@example.com",
+  "password": "ChangeThisPassword123!"
+}
+
+### Log in and receive an access token
+# @name login
+POST {{StudentManagement.Api_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@example.com",
+  "password": "ChangeThisPassword123!"
+}
+
+### Get students using the login token
+GET {{StudentManagement.Api_HostAddress}}/api/students
+Authorization: Bearer {{login.response.body.$.token}}
+Accept: application/json
+
+### Unauthorized without a token
+GET {{StudentManagement.Api_HostAddress}}/api/students
+Accept: application/json
+
+###
+GET {{StudentManagement.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
